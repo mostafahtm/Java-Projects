@@ -1,0 +1,55 @@
+
+// Implementiere ein Programm welches für y, N eingelesen Schlüssel in einer Schleife ein eingelesen
+// x mit x^y mod N verschlüsselt solang x != 0 ist.
+
+//int y, N, x, pow, copyY	
+ALLOC 5
+READ
+STORE 0
+READ 
+STORE 1
+
+outer_while_cond:
+READ
+STORE 2
+CONST 1
+STORE 3
+LOAD 0
+STORE 4
+
+CONST 0
+LOAD 2
+LESS
+FJUMP end_outer_while
+
+pow_while_cond:
+CONST 0
+LOAD 4
+LESS
+FJUMP calc_mod
+LOAD 2
+LOAD 3
+MUL
+STORE 3
+LOAD 4
+CONST 1
+SUB
+STORE 4
+JUMP pow_while_cond
+
+calc_mod:
+LOAD 3
+LOAD 1
+LOAD 3
+LOAD 1
+DIV
+MUL
+SUB
+STORE 3
+
+LOAD 3
+WRITE
+JUMP outer_while_cond
+
+end_outer_while:
+HALT

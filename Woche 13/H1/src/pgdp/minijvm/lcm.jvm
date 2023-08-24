@@ -1,0 +1,65 @@
+
+// Übersetzte hier das Programm aus der Aufgabenstellung nach den Regeln aus der Vorlesung.
+
+ALLOC 3
+READ
+STORE 0
+READ
+STORE 1
+
+LOAD 0
+CONST 0
+LEQ
+FJUMP second_if
+LOAD 0
+NEG
+STORE 0
+
+second_if:
+LOAD 1
+CONST 0
+LEQ
+FJUMP after_second_if
+LOAD 1
+NEG
+STORE 1
+
+after_second_if:
+LOAD 0
+LOAD 1
+MUL
+STORE 2
+
+while_cond:
+LOAD 0
+LOAD 1
+NEQ
+FJUMP after_while
+
+// if (b < a)
+LOAD 1
+LOAD 0
+LESS
+FJUMP else_body
+LOAD 0
+LOAD 1
+SUB
+STORE 0
+JUMP while_cond
+
+else_body:
+LOAD 1
+LOAD 0
+SUB
+STORE 1
+JUMP while_cond
+
+after_while:
+LOAD 2
+LOAD 0
+DIV
+STORE 2
+LOAD 2
+WRITE
+HALT
+
